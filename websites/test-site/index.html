@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Server verification page</title>
+    <script src="scripts/call-server.js"></script>
+</head>
+
+<body>
+    Klick the button to verify if the server is there.
+
+    <br/>
+    <button id="theButton">Verify</button>
+
+    <br/>
+    <span id="theSpan"/>
+
+    <script>
+        var sayServerIsThere = function() {
+            document.querySelector("#theSpan").textContent="The server is there.";
+        }
+
+        var sayServerIsNotThere = function() {
+            document.querySelector("#theSpan").textContent="The server is not there.";
+        }
+
+        var handleServerCallResult = function(isServerThere) {
+            if (isServerThere) {
+                sayServerIsThere();
+            } else {
+                sayServerIsNotThere();
+            }
+        }
+
+        document
+            .querySelector("#theButton")
+            .addEventListener("click", function () {
+                // use Call Server API to call the server
+                CSA.callServer(handleServerCallResult);
+            });
+    </script>
+
+</body>
+
+</html>
